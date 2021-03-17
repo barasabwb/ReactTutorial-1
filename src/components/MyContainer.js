@@ -1,32 +1,74 @@
 import React from "react"
 import List from "./List";
 import Header from "./Header";
+import InputList from "./InputList";
+import { v4 as uuidv4 } from "uuid";
 
 class MyContainer extends React.Component{
     state = {
         todos: [
             {
-                id: 1,
+                id: uuidv4(),
                 title: "Setup development environment",
                 completed: true
             },
             {
-                id: 2,
+                id: uuidv4(),
                 title: "Develop website and add content",
                 completed: false
             },
             {
-                id: 3,
+                id: uuidv4(),
                 title: "Deploy to live server",
                 completed: false
             }
         ]
     };
+    handleChange = (id) =>{
+        this.setState(prevState => ({
+            todos: prevState.todos.map(todo => {
+                if (todo.id === id) {
+                  return{
+                      ...todo,
+                      completed: !todo.completed
+                  }
+                }
+                return todo
+            }),
+        }))
+
+    }
+    delTodo = id => {
+       this.setState({
+           todos:[
+               ...this.state.todos.filter(todo=>{
+                   return todo.id !== id;
+               } )
+           ]
+       })
+
+    }
+    addTodoItem = title =>{
+        const newTodo ={
+            id:uuidv4(),
+            title: title,
+            completed: false
+
+        };
+        this.setState({
+            todos:[...this.state.todos, newTodo]
+        })
+    }
     render() {
         return  (
           <div>
               <Header/>
-            <List todos={this.state.todos}/>
+              <InputList
+                  addTodoProps={this.addTodoItem}/>
+            <List
+                todos={this.state.todos}
+                handleChangeTodos = {this.handleChange}
+                deleteTodoProps={this.delTodo}/>
 
           </div>
         )

@@ -7,7 +7,12 @@ class List extends React.Component{
         return(
             <ul>
                 {this.props.todos.map(todo => (
-                    <ListItem key={todo.id} todo={todo} />
+                    <ListItem
+                        key={todo.id}
+                        todo={todo}
+                        handleChangeProps={this.props.handleChangeTodos}
+                        deleteTodoProp={this.props.deleteTodoProps}
+                    />
 
                 ))}
             </ul>
