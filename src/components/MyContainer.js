@@ -4,6 +4,7 @@ import Header from "./Header";
 import InputList from "./InputList";
 import { v4 as uuidv4 } from "uuid";
 
+
 class MyContainer extends React.Component{
     state = {
         todos: [
@@ -61,7 +62,8 @@ class MyContainer extends React.Component{
     }
     render() {
         return  (
-          <div>
+          <div className="container">
+              <div className="inner">
               <Header/>
               <InputList
                   addTodoProps={this.addTodoItem}/>
@@ -70,6 +72,7 @@ class MyContainer extends React.Component{
                 handleChangeTodos = {this.handleChange}
                 deleteTodoProps={this.delTodo}/>
 
+          </div>
           </div>
         )
     }
