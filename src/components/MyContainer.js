@@ -59,6 +59,18 @@ class MyContainer extends React.Component{
         this.setState({
             todos:[...this.state.todos, newTodo]
         })
+
+    }
+    updateTodoItem = (newTitle,id) =>{
+        this.setState({
+            todos:this.state.todos.map(todo=>{
+                if (todo.id==id){
+                    todo.title = newTitle
+                }
+                return todo
+            }),
+        })
+
     }
     render() {
         return  (
@@ -70,7 +82,10 @@ class MyContainer extends React.Component{
             <List
                 todos={this.state.todos}
                 handleChangeTodos = {this.handleChange}
-                deleteTodoProps={this.delTodo}/>
+                deleteTodoProps={this.delTodo}
+                updateTodoItem = {this.updateTodoItem}
+
+            />
 
           </div>
           </div>
