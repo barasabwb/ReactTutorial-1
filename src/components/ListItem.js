@@ -1,5 +1,5 @@
 import React from "react"
-import MyContainer from "./MyContainer";
+
 import styles from "./ListItem.module.css"
 
 
@@ -13,10 +13,14 @@ class ListItem extends React.Component{
         })
     }
     handleUpdateDone= event=>{
-        if(event.key==="Enter"){
+        if(event.key=== "Enter"){
             this.setState({editing:false})
         }
     }
+    componentWillUnmount() {
+        console.log("Cleaning up...")
+    }
+
 
 
 
