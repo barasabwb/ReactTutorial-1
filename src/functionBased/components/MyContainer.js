@@ -2,7 +2,11 @@
     import List from "./List";
     import Header from "./Header";
     import InputList from "./InputList";
+    import { Route, Switch } from "react-router-dom"
     import { v4 as uuidv4 } from "uuid";
+    import About from "./pages/About"
+    import NotMatch from "./pages/NotMatch"
+    import Navbar from "./NavBar";
 
 
     class MyContainer extends React.Component{
@@ -19,7 +23,7 @@
                       }
                     }
                     return todo
-                }),
+                }), prevState
             }))
 
         }
@@ -77,6 +81,10 @@
 
         render() {
             return  (
+                <>
+                <Navbar/>
+                <Switch>
+                <Route exact path="/">
               <div className="container">
                   <div className="inner">
                   <Header/>
@@ -92,6 +100,15 @@
 
               </div>
               </div>
+                </Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
+                    <Route path="*">
+                        <NotMatch />
+                    </Route>
+                    </Switch>
+                    </>
             )
         }
 
